@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:  
+  mal-db:
+    container_name: mal-db  
+    image: mysql
+    ports:
+      - 3306:3306
+    networks:
+      - mal-network    
+    environment:
+      MYSQL_ROOT_PASSWORD: mal
+    volumes:
+    - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    
+  mal-pma:    
+    image: phpmyadmin
+    container_name: mal-pma    
+    networks:
+      - mal-network        
+    ports:
+      - "8080:80"    
+    environment:
+      PMA_HOST: mal-db    
+    depends_on:
+      - mal-db
+
+networks:
+  mal-network:
