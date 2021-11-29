@@ -5,15 +5,15 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
+    },
+    karyawan_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'karyawan',
         key: 'id'
       }
-    },
-    karyawan_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
     },
     tanggal_lembur: {
       type: DataTypes.DATEONLY,

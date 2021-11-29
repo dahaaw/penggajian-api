@@ -36,7 +36,7 @@ exports.getOne = (req, res) => {
     .catch(e => resError(res, e));
 }
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const {id} = req.params;
 
     const {jenis_kelamin, status_nikah} = req.body;
@@ -44,7 +44,7 @@ exports.update = (req, res) => {
     if(jenis_kelamin && !jenKel.includes(jenis_kelamin)) return resFail(res, 'invalid jenis_kelamin');
     if(status_nikah && !nikah.includes(status_nikah)) return resFail(res, 'invalid status_nikah');
     
-    const exist = karyawan.findByPk(id);
+    const exist = await karyawan.findByPk(id);
     if(!exist) return resFail(res, 'invalid id');
     
     karyawan.update(req.body, {where: {id}})
@@ -52,3 +52,13 @@ exports.update = (req, res) => {
     .catch(e => resError(res, e));
 }
 
+exports.deletee = async (req, res) => {
+    const {id} = req.params;
+
+    const exist = await karyawan.findByPk(id);
+    if(!exist) return resFail(res, 'data not found');
+
+    karyawan.destroy({where: {id}})
+    .then(d => reSuccess(res, 'data deleted'))
+    .catch(e => resError(res, e))
+}

@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const {add, get, getOne, update, deletee} = require('../controllers/karyawan');
+const {add, get, getOne, update, deletee} = require('../controllers/cuti');
 
 router.post("/", add);
 router.get("/:id", getOne);

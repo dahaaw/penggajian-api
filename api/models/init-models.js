@@ -16,12 +16,12 @@ function initModels(sequelize) {
 
   karyawan.belongsTo(golongan, { as: "golongan", foreignKey: "golongan_id"});
   golongan.hasMany(karyawan, { as: "karyawans", foreignKey: "golongan_id"});
-  cuti.belongsTo(karyawan, { as: "id_karyawan", foreignKey: "id"});
-  karyawan.hasOne(cuti, { as: "cuti", foreignKey: "id"});
-  lembur.belongsTo(karyawan, { as: "id_karyawan", foreignKey: "id"});
-  karyawan.hasOne(lembur, { as: "lembur", foreignKey: "id"});
-  penggajian.belongsTo(karyawan, { as: "id_karyawan", foreignKey: "id"});
-  karyawan.hasOne(penggajian, { as: "penggajian", foreignKey: "id"});
+  cuti.belongsTo(karyawan, { as: "karyawan", foreignKey: "karyawan_id"});
+  karyawan.hasMany(cuti, { as: "cutis", foreignKey: "karyawan_id"});
+  lembur.belongsTo(karyawan, { as: "karyawan", foreignKey: "karyawan_id"});
+  karyawan.hasMany(lembur, { as: "lemburs", foreignKey: "karyawan_id"});
+  penggajian.belongsTo(karyawan, { as: "karyawan", foreignKey: "karyawan_id"});
+  karyawan.hasMany(penggajian, { as: "penggajians", foreignKey: "karyawan_id"});
 
   return {
     admin,
