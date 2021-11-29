@@ -1,0 +1,878 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial &mdash; CodeIgniter 3.1.11 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.11 documentation" href="../index.html"/>
+        <link rel="next" title="Static pages" href="static_pages.html"/>
+        <link rel="prev" title="Design and Architectural Goals" href="../overview/goals.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Downloading CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Upgrading From a Previous Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter at a Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Supported Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Application Flow Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Architectural Goals</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="static_pages.html">Static pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="news_section.html">News section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_news_items.html">Create news items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer‚Äôs Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Using CodeIgniter Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Creating Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Using CodeIgniter Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Creating Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Creating Ancillary Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Hooks - Extending the Framework Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Auto-loading Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Compatibility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Profiling Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Running via the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Managing your Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP Style Guide</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">Benchmarking Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">Calendaring Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">Shopping Cart Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">Encrypt Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">File Uploading Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">Migrations Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">Template Parser Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">Unit Testing Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC and XML-RPC Server Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip Encoding Class</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Database Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Quick Start: Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Database Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Connecting to a Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Running Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Generating Query Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Query Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Getting MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Custom Function Calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Manipulation with Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Database Utilities Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Database Driver Reference</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Downloading CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Upgrading From a Previous Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter at a Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Supported Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Application Flow Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Architectural Goals</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="static_pages.html">Static pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="news_section.html">News section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_news_items.html">Create news items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer‚Äôs Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Using CodeIgniter Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Creating Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Using CodeIgniter Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Creating Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Creating Ancillary Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Hooks - Extending the Framework Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Auto-loading Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Compatibility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Profiling Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Running via the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Managing your Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP Style Guide</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">Benchmarking Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">Calendaring Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">Shopping Cart Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">Encrypt Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">File Uploading Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">Migrations Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">Template Parser Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">Unit Testing Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC and XML-RPC Server Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip Encoding Class</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Database Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Quick Start: Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Database Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Connecting to a Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Running Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Generating Query Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Query Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Getting MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Custom Function Calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Manipulation with Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Database Utilities Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Database Driver Reference</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Tutorial</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¬∂</a></h1>
+<p>This tutorial is intended to introduce you to the CodeIgniter framework
+and the basic principles of MVC architecture. It will show you how a
+basic CodeIgniter application is constructed in step-by-step fashion.</p>
+<p>In this tutorial, you will be creating a <strong>basic news application</strong>. You
+will begin by writing the code that can load static pages. Next, you
+will create a news section that reads news items from a database.
+Finally, you‚Äôll add a form to create news items in the database.</p>
+<p>This tutorial will primarily focus on:</p>
+<ul class="simple">
+<li>Model-View-Controller basics</li>
+<li>Routing basics</li>
+<li>Form validation</li>
+<li>Performing basic database queries using ‚ÄúQuery Builder‚Äù</li>
+</ul>
+<p>The entire tutorial is split up over several pages, each explaining a
+small part of the functionality of the CodeIgniter framework. You‚Äôll go
+through the following pages:</p>
+<ul class="simple">
+<li>Introduction, this page, which gives you an overview of what to
+expect.</li>
+<li><a class="reference internal" href="static_pages.html"><span class="doc">Static pages</span></a>, which will teach you the basics
+of controllers, views and routing.</li>
+<li><a class="reference internal" href="news_section.html"><span class="doc">News section</span></a>, where you‚Äôll start using models
+and will be doing some basic database operations.</li>
+<li><a class="reference internal" href="create_news_items.html"><span class="doc">Create news items</span></a>, which will introduce
+more advanced database operations and form validation.</li>
+<li><a class="reference internal" href="conclusion.html"><span class="doc">Conclusion</span></a>, which will give you some pointers on
+further reading and other resources.</li>
+</ul>
+<p>Enjoy your exploration of the CodeIgniter framework.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="static_pages.html" class="btn btn-neutral float-right" title="Static pages">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../overview/goals.html" class="btn btn-neutral" title="Design and Architectural Goals"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2019, British Columbia Institute of Technology.
+      Last updated on Sep 19, 2019.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.11',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+e2ó33˛èq""2TT2""˛∞˛„K
+				
+			
+       ∑º  % / : S  #7'7'.#"723267>5<57'.'.'7/77"&'.5467>32#“50ÂwY4>^D4_w_KGœK06Y....3`50kwZ4>`E4`__LG˛sM15B.--.    ˇÒqœ  1 |  73267>54&'.#"72#"&'.5467>37'#"&'.5467>77'"3>7>323.'.#5267>72:!!::!!:†4444_
+(F'* J)#	
+
+
+
+
+	#
+˝!::!!;;!è4444˛∂.F(3$.(8*K#     ≈®   5 P k  #935151511'#53717>7>54&'.'7>7>54&'.'7>7>54&'.'⁄{_`zdTTd8D4						
+	
+	
+åbLKaaóbÈNNvP?vë	
+
+	
+
+
+
+= $$ "&(#7-32,.56/      0≈ê æw  73:3:130233:3:13023:3265<54&'.'.'"&5467>7>76&'<1&676&'.'.+"0.'.'&45467>7>76&'041&676&'.'.+"01#467>7>7>54&'./.'&6715061516&'&67>7>731!5'467>7>7>54&'.5/.'&4=3<1536&'467>7>739#5 H
+Z		
+Z	
+
+	
+					
+
+ó			
+
+˛„Ü
+
+	
+
+uÄ
+																
+
+
+
+	
+	**	
+		      ì©  i ∫  "3267>54&'.#>7>7>7>='"&#"&'>7>737>7>321#"#"&'.'7.5<1063267>7.'.51.'.#"#3210.'.5467>32…)J  J)*I  I*n
+								Î9		
+9C&'C©I**II**I˛£!
+				
+	
+
+ !! 
+	&&CC&&       §≤  1 :  %4&'.#"3267>5!467>32#"&'.5%7'735§!M+,L!!L,+M!˛mF((FF((FffQ‡+M!!M++M!!M+(FF((FF(ffRÃÃ      I¯w  1 Z  %4&'.#"3267>5"&'.5467>32##32+3267>54&'.#.7777ó1111…Äe11eÄ 77 ‡7777Ü11111177      G”w \ g Ä ô û £ ® ≠  7'.'>7>'.'.3267#.'.'.7>7>73#3534&15#.'.5#35#'7'>%.'&67>76&'&'.'&67>763#5;#5!3#5!3#5Ÿ˙éj-
+
+(D
+
+N262Eææ3$˛œ
+33 22˛Û33P22æOKB	
+
+:	
+
+	
+
+PgD
+
+f]      §°  7 < A F L Q W  "#33267>54&'.#"&'.'35#>7>32#5#3=#37!!#531!!!!1“
+
+
+
+
+
+
+
+
+::
+
+
+†˛„¸¸˛∞§˛\ì˛~Ç,				
+
+á
+
+3Cá2Cv˛‚˛Û¸¸?˛~Ç˛è`˛†     §≤  1 :  7267>54&'.#"32#"&'.5467>37'#3“+M!!M+,L!!L,(FF((FF(ffQÀÀ!M++M!!M++M!ìF((FF((F˛ÂffR       Ø∏ J Z d  %1"1#"&'.5&6777>?7'7''7''326?>327.#"'7#"&'.5467'7-Ñ !/0HG0GG/0''Ü!"Ë0v/πÖ 0/GG0GH0/&&Üî/v0v      ∂ª . Y  3:377'7'..'.'645./?117>76.7>?'1.'./#"#"&' &	zÖÑz#",Ä`Y3ÿ	,";	,"#zÑÖz	&ÄaM*ÿ3(    µ¢ Ö  >7>312#"&'./1'.'.5467>7>7>32'.#"3267>7>54&/.'.#"'.'.5467>7"
+		
+·cv	ææ
+
+Ÿ	
+				‡			≈ƒÇ·dvææ
+	⁄		·	
+		≈≈
+
+
+
+      ˇÒìœ  	    > S  73#53#53#5.'.#"#!#5467>32#>7>?!33.'.'53e…………ÜÜñ	
+		òìòSù	⁄˛èÜ
+…	
+Ü˝CC.		˛L¥&˛Éí
+		
+˛n    ì©   " '  %5#535#3##35#53#35#'3#5#533#53GuK®LuL®L€L®L¡ááÜÜÎÜÜæ*ßß*ßßßß€áá˛éáááá       Ö¢   '  '5#9373717717537#31'515Ör{`?kvc~˛∏Ud{>πVsór]bLKkvdÚuP?zNCZ`l      ˇı.À ' A Z s å  >7>=#3267>54&'.''53353.'.#".5"&'.5467>32#5"3267>54&'.#"&'.5467>32#⁄
+⁄
+77 üST\1111$$%%
+" AA #		)77)	w0ss0D%J˛|1111Î%$$%π     ¥± S π  %4&'.+>7>54&'.#"#*132;267>54&'>7>54&'>7>54&'>7>5#32+32+32+1#"&'.'.+5:3:3267>7>7>54632134132#¥	à			9[
+
+
+Ñ
+
+
+&o
+	J	
+
+
+g<
+ÊN√
+			¢&!*E      §≤  1 :  "3267>54&'.#"&'.5467>32#'7'35#“,L!!L,+M!!M+(FF((FF(ffRÃÃ≤!M++M!!M++M!˛mF((FF((FffR     ˇ˝ Î√  % I  3#54&'.#"357'57'>7>5#5'.'.5467>32m~++
+
+T*)
+
+Q$$2		%%		CC2++"„;!**"^##/1›%%    ÷º h ∞ º ’ ‚ ˚  "5467>;267>7#+"189.'.#"381267>7>7>3:3:1:323812654&'.#9"&'.'.'.+"#9"&5467>323267>7>7>32#%##33535#7"3267>54&'.#"&54632#7"3267>54&'.#"&54632#\
+
+#
+%)/
+		
+/)F					2					#
+		
+
+		
+#˛‰""""±				C					&
+#	L2332Lˇ%0FF0%º!""				"				"    0§ê  	     # ( - 2 6 :  !!#535#535#535#53#3#535#535#535#537'5 §˛\C22222222¸¸C33333333ÎuuCCê˛†`˛±CCSDDTDDTCCﬂ>_ﬂCCSDDTDDTCCàDD''N    §≤  1 f ‚	lÖ  7267>54&'.#"352#"&'.5467>3>54&'.#181"813267>7465'0010101'>54&'.#818101*#81'>7>71>7>783>3:1263:3263:3201201"1"#0#'>70"1"#"*#"*1"#0#**1*#"&'.'<5<5<7<1467>781>7>781813267*1'#"&'.5467>32“				
+
+–!M+7&!L,'F%d
+
+	T		$A"-	8dT'D 
+S
+8	
+		
+∂				C				3+M!(	
+
++M!A%<	
+S
+<#qh=	:C&S
+
+h∂
+	
+
+     0°ê h ≈ —  %.'.'.5467>7>76&'<#4676&'.'.+""#3:3:13023:3265<54&'!5467>7>7>54&'.'5'.'&65>5156&'&67>7>731211?''77,
+
+
+
+
+
+	Y
+
+Y	
+	˛„
+		
+G,,,,,,,É					C*	
+	
+
+
+
+		*±+,,+,,,    §≤  1 :  73267>54&'.#"!#"&'.5467>327'5# !L,+M!!M+,L!ìF((FF((F˛ÂffR‡+M!!M++M!!M+(FF((FF(ffRÃÃ       0¥ê h ≈ —  %.'.'.5467>7>76&'<#4676&'.'.+""#3:3:13023:3265<54&'!5467>7>7>54&'.'5'.'&65>5156&'&67>7>73121175##33535,
+
+
+
+
+
+	Y
+
+Y	
+	˛„
+		
+CCCCÉ					C*	
+	
+
+
+
+		*πCCCC       Õ≠  	  ' @ Y r   !!3#!!'267>54&'.#"32#"&'.5467>3267>54&'.#"352#"&'.5467>3#"&54632 Õ˛3++´˛ëo≥!;;!";;"4444
+
+≠˛fö˛àx˛àx˛à;"";;"";35555ƒU"     ®¥ 2 9 H W  735#3.'.#">7#3757>7>54&'.'5#73>7>32''7g0D'0&-2*ô:*<7;:ò
+	˚O$)*#òô=òòg0(E0	
+ö9<6;+9ô*3.&˛Ûôô#**$ôô    ˇ¸ﬁ≈  - C  !!570513830292.'.#"0+81'7526324&'.'3!Uâ˛Õ´UE2	(!{{4E/-'–˛ô˛Ââ@t:m%-SS x/M
+&!3$˛ô   ˇÛ’Õ     ) 6 C P ] j w Ñ ë  '.#"326764''7'77'789'#"&54632#"&54632'#"&54632#"&54632#"&54632#"&54632'#"&54632#"&54632’l˛¥lL‰mal`tlgmh‡llll0T0Â0U1\l˛¥lLÂlam`slglgﬂmllmë00Ö01   	   -Õì  % > K ê ° ± ¡ “  7"3267>54&'.#"&54632#%"3267>54&'.#"&54632#7'.'.+"#333267>=33267>=354&'.'535#%>7>;2!7#"&'.=3!#"&'.=37!5467>3!2^
+
+
+
+
+
+
+
+#	ﬁ<7			ﬁ		
+7;˛…	ﬁ
+˛≈
+	34
+
+4˛gUÈ4
+
+
+
+44
+
+
+
+xDD
+ww
+	?RQ˛Î				ëff     ø≠        '#'+7#'3'#7'353∑dÁdŸﬂ´UV¬Y∞WmW´Teªª∫∫5xx	˛ÔffggddduÍÍÍÍÍ       ´µ  1 M m  "3267>54&'.#"&'.5467>32#74&'.#"3'>7>5#?'.'.5467>32’,N""N,,N""N,(HH()GG)E	
+		$â#Y
+
+	
+µ!N,,N!!N,,N!˛gG))GG))G˜	
+
+
+
+		ff	ëO
+	P       üØ 1 G c  .'.#"'73267>?7'7>56&'#"&'.'.546?7'7>7>32ã=#)π		$$	
+
+π&!=
+
+˛Ï		πAπÀM=	
+	=õ>#(π
+##π'"=
+˛´		∫AπøL>	
+
+	=    #æ / T  7>54&'.'.#"3#33535#5267>7'>7>32#"&'.'.5467¯
+
+
+EEDD
+¡				∆6666
+EDDE
+¡
+	/0	/0    F z  ! & + 0  %#5#5##5###3335335353553##33#37#53 24D™E3443E™D42˛E""U""Ô""4##Èf+ëë+ff+ëë+fgºº+˛Ó˛Ó+ºº     ˇˆ‘        %'7'777''7/7''7»»Å	^⁄⁄]çy``*sar`=`_˜»Ç	^Ÿ⁄^	éyaa+r`r`˝aa   ˇÒ´œ V d i w  %4&'.#"33151"5467>32.'.+32675#35>7>7>7>5<515.'.5467>7#5375´"N,,N"%
+H()G
+VU&	˛™				ö33f				˙,M""M,W&Õ&(HH(&
+Õ
+	3
+WßÌFß 
+  ˇÈÔ◊ H W p  é ù ¨ ª   Ÿ  %5#4&'.'7'.'.'5#'#3735>7>77'>7>53'#.'.'7"&'.5467>32#7.'.#5'"'>7>7#>7>73.'.573.'.'5267>77'>7>73Ô<
+**  ++<<
+** !++
+>MfI	´
+
+sJ	{JvIf	+fH
+7H	{	HvHf	◊ ++::++ !++=<++ 
+H
+<≤Ii
+-hI	9H
+
+|	HtGf
+,fH
+8G
+     +µ & 6 F  535!3#!5#54&'.'>7>5#5467>7'.'.=3ˇ,˛’+
+	"!
+
+	++,	
+
+!"		≤	
+##
+	Z#	
+≤	
+#?eeXXÀXXq	ee	     ˇ‡‡  ?  %4&'.'35>7>557'5#'.'.5467>700--Ä6*,8'++'’+K !::! K+(5^^5(ÖB6*≠Q,8û."%B55B%".       †∞  	     " '  ?'3#5;#53#553#5'7'7/7 ﬂﬂ†DDªEEDi0000Ñ10ﬂﬂEDDºDD+11∂11Ö00     ö≠ & ?  7.'.#"3267>54&'.'77"&'.5467>32#ÏÇÅ	555	Ç)Æ[//..ÖÅ555
+ÅÇ≠(˛ü/../     ˇ˙â∆ # ( A J O  %'5>7>54&'.#"'77557467>32#"&'.5'535757 3		3ââwâââff#				fw33wffÀh		^8—8DD—DÇ)¨*≠B				˛ÅE™KB¨<3´3´     ˇ¸ﬁ≈  , B  '!!7'5815#*1">7>31021021358=!3>7>3:7ﬁ´˛ÕâUö{{!(	13˛öœ'./DQt@˛w:SSS-% ˛hg$3 '
+M.ˇ    ˇÒ≈œ ( 8 N g à  %1'54&'.#"3267>?3'%467>325#"&/.546?357#.103267>5&4'"&'.5<59>7>7#fß
+F`	
+		zi4ˇ EƒÄaë≥Gô34		6Ûß
+
+kG	
+`{5©DZÕÄ`êl}≤ü#IJ#		.				    ˇ˙ Ô∆   * / 4  5##;267>5#'3#5+"&'.533#5;#5ºâ3
+ë
+3xggöëÕâ4>àà˛Î
+
+www˛t
+
+˛¸s++++     ´≠     1 J  !!77!5!5!5''5!'267>54&'.#"352#"&'.5467>3 ´˛Uxv<Y˛}â˛wâ]<xxâ^				
+
+		≠˛fö˛˛~w3Z áVVy`3w}ÿˇá				E
+		
+      ˇ˘È∆ ù π(A  %#.'.'467>7.#&"'>54&'.#".'.5467>7'3267>?33:3>3326?>764/>7>73267>=.'.#%467>32.'.5+#"&/#*'./#*/.'&4?'.'.5467>3:27>7>732'#"&'.5467>32Ω
+				
+
+				
+
+		
+
+		˛∫
+		
+^	
+
+
+	
+
+B&
+		^Ò
+
+		
+
+
+
+
+
+
+
+	
+					â		
+Œ			
+
+4
+			
+	8   	   $ÕÆ  1 j õ ¥ Õ Ê Î   "3267>54&'.#"&'.5467>32#7>54&'.#"'>54&'.#".'.#"75''73267>54&'73267>73267>77#"&'.5467>32'2#"&'.5467>32#"&'.5467>3'557Ê				
+		
+
+
+«			
+		
+		&ÊÁ «»
+		
+
+	…ºº
+
+Ä
+
+UÕÕﬁÕÕF				D				<						©bc®jV		
+		U|				L				3				LWåXã„åWãX     ∞≠  ! ? C  %7'>7>54&'.#2'7%467>7735"&'.57'7Hz0
+ K*'D+8C˛»
+4z' J+'D\
+8B∂}0+J D'
+
+-iD:
+ì 5})#+J D'™D:
+ 	  ˇ‡U‡  1 M Q a j o t y  "3267>54&'.#"&'.5467>32#<5<54&'.'!'#73#5467>77#<5<53#5;#5#3#5´								U
+  UUU´11öâ					11^+Vi				E	
+
+	s0"
+)$$*	#0jkZ??ˆ""ˆ??
+aUU3333    
+ ˇﬁÕ H R \ f p z Ñ ê ∂ ¿  %75'.'.'7'.'./#'737>7>77'>7>774654&5'.'.'7'3"&#"#77'57''7#'239263'"&'.5467>7>7>312#7'>7>7öDD&'3@5'%DD&'3@	4''333N&°"ì':33N%°" 8 8§'π@3'&DD%'5@4''DD&'68!
+ì&:33N&°"í&;33D8 8 
+(      Dµ  % 1  0>7>5<1'.'.=7'77'7'¢¢>*+=¢ë6&%7ëë¬3333333µÃ.((.Ã˛¸(%%(◊ÿÉ4344344    ö≠  1 V o à  "3267>54&'.#"&'.5467>32#7&#"&'.'.3267>76&''#"&'.5467>323#"&'.5467>32Õ+J  J+*K  K*'DD''DD'j!!ï				â
+
+
+
+≠ J++J  J++J ˛wD''DD''Dã	
+
+	\								      ˇ‡ Ê‡ V c | Å  #357'7'.=>7>54&'.#"3267>54&'.'57>=354632#"&5#"&'.5467>323#5Ê;;##6		C		G’
+
+
+
+Ä				+z;):Ó	::	˛Ã6((
+C0		vG);g
+
+
+
+˛¯				^      ˇˆ‘Ã h m Ä ñ õ †  .'.#"73267>54&'.#"'.#"3267>74&'77'.'&677'>7>327''7>32#"&'&47#"&'.5467>327'7'7´ 	A	R*TA
+***++))ÊOÊrBAQ*TA63***45)
+))+˛ﬁî˛Îx    ˇ˙ ∆  ) 4  1'7'77>?357'#"&'.'.'37!.7>?˝YIHùII530)Õg/0Û$5˛ˆNµ∆Z34HHùIH0)Œ˛„	$6#Nµ       >s©≠_<ı      –íd~    –íd~  ˇ‡‡             ‡ˇ‡     ˇ˛                Œ                 3  +  +       3  U  U     ^    +    3       <         *  3    <  7  G  ^  +  3     +  "    3  3  +  f      x    +  /  3  <    +  +  3  Ä     +  "  o  3  +  U  +  +  +  D        U  â  +  +  U  +  <  +  +  *  3  +  +  3    +  +  f     3  3  f  "  k  3  3  <  ^  +  U    "  3  3      +    B  +  3  3  <     3  +  +    +  3  f  +    3  +     3     +  +         +  3  ü  +  †  *  “  *  ¡  *  †  *    ÷    a  µ  ∑  r  ∆  ≈  ì  §  ¯  ” §  §  Ø  ∑  ∑ ì  ì  Ö  .  µ  §   Î  ÷  §  §  °  §  ¥  Õ  ©  ﬁ  € Õ  ø  ´  †  #     ‘  ´  Ô  +    †  ö  â  ﬁ  ≈   Ô  ´  Á  Õ  Ø  V  ﬁ E  ö   Ê  ’          
+   ∞Í~‘2nJº¸t∆∂	@	j	Ë
+
+äJ|∆∫z‘rúƒ
+ﬁ–.P§‹6N¿Ë@Ó¢ Jl‚VÙpF∂÷Zê–j¶¯v‹à ` û!!®""‡#4%¢&&å&ƒ((∂(÷)*4*≤,|,ö-N..^.Ê//$/\/ä0t0‘11>1ê22F2Œ3L3ê3¬4:4t5¨6J6∆77∏88z8¶9D:0;;¶;‹<<l<‡=∆>">î?^?ò?∆@L@vA$ALAfA∆A⁄B4BHB†B¥CC"C|D$DŒEZEÄE¬F‹G\HH¨J§K¨LLåMéNNlOOåPPPÃQQ<RR¸SVS¬UUtWXXzX‘YÚZ¨[2[å\V]x]Æ^P^Í_d_¶_‚`àaŒb6bòb⁄c<c¥ddŒeeêgZh∞iiƒj‰k2k˙l≤m§m˙      Œƒ                          Æ                  Ü         6         î                 V      
+ 4 ¥  	       	   Ü  	    6  	    î  	      	    f  	 
+ 4 ¥ P e - i c o n - 7 - s t r o k e V e r s i o n   1 . 0 P e - i c o n - 7 - s t r o k ePe-icon-7-stroke P e - i c o n - 7 - s t r o k e R e g u l a r P e - i c o n - 7 - s t r o k e F o n t   g e n e r a t e d   b y   I c o M o o n .                                 
